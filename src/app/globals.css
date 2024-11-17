@@ -18,3 +18,31 @@ body,
   @apply bg-gray-500;
   @apply text-gray-900;
 }
+
+
+.timeline ._3_ygE {
+  @apply dark:bg-dark-secondary
+}
+.timeline ._34SS0:nth-child(odd) {
+  @apply dark:bg-dark-secondary
+}
+.timeline ._34SS0:nth-child(even) {
+  @apply dark:bg-dark-tertiary
+}
+
+.timeline ._35nLX {
+  @apply dark:fill-dark-secondary
+}
+
+.timeline ._9w8d5 {
+  @apply dark:fill-white
+}
+.timeline ._31ERP {
+  @apply dark:fill-gray-600
+}
+.timeline ._2dZTy:nth-child(odd) {
+  @apply dark:fill-dark-secondary
+}
+.timeline ._2dZTy:nth-child(even) {
+  @apply dark:fill-dark-tertiary
+}

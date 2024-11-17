@@ -1,16 +1,18 @@
 "use client"
 
 import React, { useEffect } from 'react'
-import Navbar from './(components)/Navbar'
-import Sidebar from './(components)/SIdebar'
+
 import StoreProvider, { useAppSelector } from './redux'
+import Navbar from '@/components/Navbar';
+import Sidebar from '@/components/SIdebar';
+import AuthWrapper from '@/components/AuthWrapper';
 
 
 
 
-const DashboardLayout = ({children}: {children: React.ReactNode}) => {
-  const sidebarState = useAppSelector((state)=> state.global.sidebarToggle);
-  const dakrModeState = useAppSelector((state)=> state.global.isDarkMode);
+const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
+  const sidebarState = useAppSelector((state) => state.global.sidebarToggle);
+  const dakrModeState = useAppSelector((state) => state.global.isDarkMode);
 
   useEffect(() => {
     if (dakrModeState) {
@@ -23,20 +25,22 @@ const DashboardLayout = ({children}: {children: React.ReactNode}) => {
 
   return (
     <div className='flex min-h-screen w-full bg-gray-50 text-gray-900'>
-      <Sidebar/>
+      <Sidebar />
 
       <main className={`dark:bg-dark-bg flex w-full flex-col bg-gray-50 ${sidebarState && "md:pl-64"}`}>
-        <Navbar/>
+        <Navbar />
         {children}
       </main>
     </div>
   )
 }
 
-const DashboardWrapper = ({children}: {children: React.ReactNode}) => {
+const DashboardWrapper = ({ children }: { children: React.ReactNode }) => {
   return (
     <StoreProvider>
-      <DashboardLayout> {children}</DashboardLayout>
+      <AuthWrapper>
+        <DashboardLayout> {children}</DashboardLayout>
+      </AuthWrapper>
     </StoreProvider>
   )
 }

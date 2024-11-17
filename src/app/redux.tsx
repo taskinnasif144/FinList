@@ -8,6 +8,8 @@ import storage from 'redux-persist/lib/storage';
 import {persistReducer, persistStore } from 'redux-persist';
 import thunk from 'redux-thunk';
 import { PersistGate } from 'redux-persist/integration/react';
+import { ApiProvider } from '@reduxjs/toolkit/query/react';
+import { api } from '@/State/api';
 
 
 // persist configs
@@ -22,7 +24,10 @@ const persistGlobalReducer = persistReducer(persistConfig, globalReducer)
 export const store = configureStore({
   reducer: {
     global: persistGlobalReducer,
-  }
+    [api.reducerPath]:api.reducer
+  },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(api.middleware),
 });
 
 const persistor = persistStore(store);
@@ -39,9 +44,9 @@ const StoreProvider = ({children}: {children: React.ReactNode}) => {
   return (
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
-      {children}
+        {children}
       </PersistGate>
-      </Provider>
+    </Provider>
   )
 }
 
